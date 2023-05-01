@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ponyo on the Cliff by the Sea</title>
+    <style>
+        /* font 적용 */
+        /* @font-face {
+            font-family: "LeeSeoyun";
+            src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        } */
+
+        @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Noto+Serif+KR:wght@200&display=swap');
+
+            {
+            font-family: 'Mochiy Pop P One', sans-serif;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        /* body tag에 CSS 요소 부여 */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-image: linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2)),
+                url("./background.png");
+            background-position: center 30%;
+            background-size: cover;
+        }
+
+        .container {
+            width: 390px;
+            background-color: #8ccacc;
+            height: 100%;
+        }
+
+        .photos {
+            margin-top: 30px;
+        }
+
+        /* 상하 마진 15px, 좌우 마진 20px */
+        .photo-frame {
+            font-family: "Noto Serif KR";
+            background-color: white;
+            margin: 15px 20px;
+            height: 200px;
+
+            background-size: cover;
+        }
+
+        /* flexible 세로 베열, 가운데 정렬 */
+        .footer {
+            font-family: "Mochiy Pop P One";
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .f-title {
+            font-size: 25px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .f-date {
+            font-size: 15px;
+            font-weight: 300;
+            color: white;
+        }
+
+        #image1 {
+            background-image: url('./image1.jpg');
+        }
+
+        #image2 {
+            background-image: url('./image2.jpg');
+        }
+
+        #image3 {
+            background-image: url('./image3.jpg');
+        }
+
+        #image4 {
+            background-image: url('./image4.jpg');
+        }
+
+        .photo-description {
+            color: black;
+            background-color: white;
+
+            /* 가로 너비 내부 콘텐츠에 맞게 */
+            width: fit-content;
+            padding: 0 20px;
+            margin-bottom: 10px;
+
+            /* 경계선 */
+            border-radius: 9px;
+            position: absolute;
+            bottom: 0;
+
+            transform: translate(-50%);
+            left: 50%;
+
+            opacity: 0;
+        }
+
+        .photo-frame {
+            background-color: white;
+            margin: 15px 20px;
+            height: 200px;
+
+            background-size: cover;
+            position: relative;
+
+            cursor: pointer;
+        }
+
+        .video {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* opacity: 투명도 0에 가까워 질 수록 투명 */
+        .showText {
+            opacity: 1;
+        }
+
+        /* transition: 천천히 나타나는 효과 */
+        .hideText {
+            opacity: 0;
+            transition: opacity 0.5s linear;
+        }
+    </style>
+    <script>
+        // text 보이는 기능
+        // 몇 번째 사진에 cursor가 올라갔는지 확인(if문)
+        // 해당 사진 hideText class 삭제, showText 삽입
+        function showText(number) {
+            if (number === 1) {
+                document.querySelector("#desc1").classList.remove("hideText");
+                document.querySelector("#desc1").classList.add("showText");
+            } else if (number === 2) {
+                document.querySelector("#desc2").classList.remove("hideText");
+                document.querySelector("#desc2").classList.add("showText");
+            } else if (number === 3) {
+                document.querySelector("#desc3").classList.remove("hideText");
+                document.querySelector("#desc3").classList.add("showText");
+            } else {
+                document.querySelector("#desc4").classList.remove("hideText");
+                document.querySelector("#desc4").classList.add("showText");
+            }
+        }
+
+        // text를 감추는 기능
+        // 몇 번째 사진에서 cursor 벗어났는지 확인(if문)
+        // 해당 사진 shotText class 삭제, hideText는 삽입
+        function hideText(number) {
+            if (number === 1) {
+                document.querySelector("#desc1").classList.remove("showText");
+                document.querySelector("#desc1").classList.add("hideText");
+            } else if (number === 2) {
+                document.querySelector("#desc2").classList.remove("showText");
+                document.querySelector("#desc2").classList.add("hideText");
+            } else if (number === 3) {
+                document.querySelector("#desc3").classList.remove("showText");
+                document.querySelector("#desc3").classList.add("hideText");
+            } else {
+                document.querySelector("#desc4").classList.remove("showText");
+                document.querySelector("#desc4").classList.add("hideText");
+            }
+        }
+
+        // click 기능
+        // 선택된 사진의 숫자를 가진 text를 alert 형태 출력
+        function alertText(number) {
+            alert(`${number}번 장면을 선택하셨습니다:)`);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="photos">
+            <div id="image1" class="photo-frame" onmouseover="showText(1)" onmouseout="hideText(1)"
+                onclick="alertText(1)">
+                <span id="desc1" class="photo-description">
+                    널 처음 만난 날
+                </span>
+            </div>
+            <div id="image2" class="photo-frame" onmouseover="showText(2)" onmouseout="hideText(2)"
+                onclick="alertText(2)">
+                <span id="desc2" class="photo-description">
+                    처음 먹었던 라멘
+                </span>
+            </div>
+            <div id="image3" class="photo-frame" onmouseover="showText(3)" onmouseout="hideText(3)"
+                onclick="alertText(3)">
+                <span id="desc3" class="photo-description">
+                    우리가 함께한 시간
+                </span>
+            </div>
+            <div id="image4" class="photo-frame" onmouseover="showText(4)" onmouseout="hideText(4)"
+                onclick="alertText(4)">
+                <span id="desc4" class="photo-description">
+                    ♥
+                </span>
+            </div>
+            <!-- src(source): 자료의 원천 -->
+            <div class="photo-frame">
+                <iframe src="https://www.youtube.com/embed/DaVIv0-Qu4g" frameborder="0" class="video"></iframe>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="f-title">崖の 上の ポニョ</p>
+            <p class="f-date">2008</p>
+        </div>
+    </div>
+</body>
+
+</html>
